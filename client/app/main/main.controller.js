@@ -23,11 +23,16 @@ angular.module('ghgVisualizerApp')
             labelField: 'agyName',
             valueField: 'agyAbbrev',
             searchField: 'agyName',
-            onChange: function(agency) { agencySelected(agency) }
+            onChange: function(agency) {
+                agencySelected(agency);
+                showFleetComposition(agency);
+            }
           })[0].selectize;
         });
 
-        function agencySelected(agency){
+
+
+          function agencySelected(agency){
           // GET VEHICLE STATS
 
           $.ajax({
@@ -44,7 +49,7 @@ angular.module('ghgVisualizerApp')
             url: "/getVehicleEmissions/" + agency,
             context: document.body
           }).done(function(data) {
-            console.log(data);
+            //console.log(data);
 
 
           });
@@ -53,7 +58,96 @@ angular.module('ghgVisualizerApp')
         }
       }
 
+        function showFleetComposition(agency){
+            $.ajax({
+                url: "/getVehicleEmissions/" + agency,
+                context: document.body
+            }).done(function(data){
+                renderFleetComposition(data);
+                $('#executiveOrderInformation').show();
+            });
+        }
+
+
       loadAgencies();
+
+
+      function renderFleetComposition(agency){
+
+          var i;
+          var e85series = [];
+          for ( i = 0; i < 4; i++)
+            e85series.push(agency.VEHCNT_E85);
+
+          var e85gasSeries = [];
+          for (  i = 0; i < 4; i++)
+              e85gasSeries.push(agency.VEHCNT_GASE85);
+
+          var otherSeries = [];
+          for ( i = 0; i < 4; i++)
+              otherSeries.push(agency.VEHCNT_OTHER);
+
+          var gasSeries = [];
+          for (  i = 0; i < 4; i++)
+              gasSeries.push(agency.VEHCNT_TOTAL);
+
+          var data = [{
+              name: 'E85',
+              data: e85series
+          }, {
+              name: 'E85 Gas',
+              data: e85gasSeries
+          }, {
+              name: 'Other',
+              data: otherSeries
+          }, {
+              name: 'Gas',
+              data: gasSeries
+          }];
+
+          $('#fleet-composition-chart').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: ""
+              },
+              subtitle: {
+                  text: 'Change Needed to Meet Emissions Reduction Executive Order'
+              },
+              credits: {
+                  enabled: false
+              },
+              exporting: {
+                  enabled: false
+              },
+              xAxis: {
+                  categories: ['2014', '2017', '2021', '2025']
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                      text: 'Total Vehicles'
+                  },
+                  labels: {
+                      formatter: function(x) {
+                          return this.value+"%";
+                      }
+                  }
+              },
+              tooltip: {
+                  pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+                  shared: true
+              },
+              plotOptions: {
+                  column: {
+                      stacking: 'percent'
+                  }
+              },
+
+              series: data
+          });
+      }
 
       function renderPieChart(id, agency, data, efficientCarPercentage) {
         console.log(id);

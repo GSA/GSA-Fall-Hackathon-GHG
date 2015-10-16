@@ -74,7 +74,7 @@ module.exports = function(app) {
         .get(function(req, res){
             connection.query("SELECT * FROM ghg_stats WHERE agyAbbrev = '"+ req.params.agency +"';",
                 function(err, rows, fields) {
-                    res.send(rows);
+                    res.send(rows[0]);
                 });
         });
   
