@@ -1,10 +1,42 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
+<script>
+  selectedAgency = null;
+
+  function loadAgencies() {
+    $.ajax({
+      url: "/getAgencies",
+      context: document.body
+    }).done(function(data) {
+      if(selectedAgency) {
+        selectedAgency.destroy();
+      }
+
+      selectedAgency = $('#selectedAgency').selectize({
+        options: data,
+        labelField: 'agyName',
+        valueField: 'agyName',
+        searchField: 'agyName',
+        onChange: function(agency) { agencySelected(agency) }
+      })[0].selectize;
+
+      //$('#cities').removeClass('hide');
+    });
+
+    function agencySelected(agency){
+      console.log("here");
+    }
+  }
+</script>
+
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+    <h1>Greenhouse Gas Emission Reduction Tool</h1>
+    <p class="lead">Which agency are you interested in?</p>
+    <div class="col-md-offset-3 col-md-6">
+      <select id="selectedAgency" placeholder="Type an agency name"></select>
+    </div>
+    <script>loadAgencies();</script>
   </div>
 </header>
 
