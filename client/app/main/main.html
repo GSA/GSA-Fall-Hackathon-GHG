@@ -39,21 +39,14 @@
 
       // GET
 
-      /*$.ajax({
-        url: "/getVehicleStats/" + agency,
+      $.ajax({
+        url: "/getVehicleEmissions/" + agency,
         context: document.body
       }).done(function(data) {
+        console.log(data);
 
-        var series = [{
-          name: 'Donations Received',
-          data: data.donations,
-          pointPlacement: 'on'
-        }, {
-          name: 'Donations Requested',
-          data: data.requestedDonations,
-          pointPlacement: 'on'
-        }];
-      });*/
+        
+      });
 
       $('#initialGraphs').show();
     }

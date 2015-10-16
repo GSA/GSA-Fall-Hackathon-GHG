@@ -56,7 +56,10 @@ module.exports = function(app) {
                         }
                     }
 
-                    var efficientCarPercentage = Math.round(energyEfficientVehicles/totalVehicles);
+                    console.log(totalVehicles);
+                    console.log(energyEfficientVehicles);
+
+                    var efficientCarPercentage = Math.round(energyEfficientVehicles/totalVehicles*100);
 
                     var response = {};
                     response.vehiclePairs = vehiclePairs;
@@ -69,7 +72,7 @@ module.exports = function(app) {
 
     app.route('/getVehicleEmissions/:agency')
         .get(function(req, res){
-            connection.query("SELECT vehType, vehCount, agyName FROM ghg_agency WHERE agyAbbrev = '"+ req.params.agency +"' ORDER BY vehType ASC;",
+            connection.query("SELECT * FROM ghg_stats WHERE agyAbbrev = '"+ req.params.agency +"';",
                 function(err, rows, fields) {
                     res.send(rows);
                 });
