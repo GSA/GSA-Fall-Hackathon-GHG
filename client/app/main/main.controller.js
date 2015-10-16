@@ -371,8 +371,6 @@ angular.module('ghgVisualizerApp')
             var use_b = 1;
             var use_c = 1;
 
-
-
             var new_vehicle_emission_gas      = vehicle_count_gas * vehicle_unit_gas;
             var new_vehicle_emission_diesel   = vehicle_count_diesel * vehicle_unit_diesel;
             var new_vehicle_emission_hybrid   = vehicle_count_hybrid * vehicle_unit_hybrid;
@@ -387,8 +385,10 @@ angular.module('ghgVisualizerApp')
 
                 new_vehicle_emission_total = new_vehicle_emission_gas + new_vehicle_emission_diesel + new_vehicle_emission_hybrid + new_vehicle_emission_electric;
 
-// console.log('vehicle_emission_total' + vehicle_emission_total);
-                //     console.log('new_vehicle_emission_total' + new_vehicle_emission_total);
+                new_vehicle_emission_gas      = vehicle_count_gas * vehicle_unit_gas;
+                new_vehicle_emission_diesel   = vehicle_count_diesel * vehicle_unit_diesel;
+                new_vehicle_emission_hybrid   = vehicle_count_hybrid * vehicle_unit_hybrid;
+                new_vehicle_emission_electric = vehicle_count_electric * vehicle_unit_electric;
 
                 newPercentage = 100 - ((new_vehicle_emission_total / vehicle_emission_total) * 100);
 
