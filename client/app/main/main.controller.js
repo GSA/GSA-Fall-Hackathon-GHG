@@ -112,7 +112,7 @@ angular.module('ghgVisualizerApp')
       function renderFleetComposition(seriesWithMeta, agency){
           $('#executiveOrderStats').show();
 
-        $("#executiveOrderSummary").html("To comply with an Executive Order to reach a <strong>30%</strong> reduction in GHG emissions by 2025, the "
+        $("#executiveOrderSummary").html("To comply with an Executive Order to achieve a <strong>30%</strong> reduction in GHG emissions by 2025, the "
             + agency + " could replace <strong>" + seriesWithMeta[1] + "</strong> Gasoline vehicles with Electric vehicles.");
 
           $('#fleet-composition-chart').highcharts({

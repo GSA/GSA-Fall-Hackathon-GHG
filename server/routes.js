@@ -119,6 +119,7 @@ module.exports = function(app) {
                 });
         });
 
+    // TODO: Remove this; unused
     app.route('/getVehicleEmissions/:agency')
         .get(function(req, res){
             connection.query("SELECT * FROM ghg_stats WHERE agyAbbrev = '"+ req.params.agency +"';",
