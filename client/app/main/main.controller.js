@@ -31,18 +31,9 @@ angular.module('ghgVisualizerApp')
             context: document.body
           }).done(function(data) {
             renderPieChart('vehiclePieChart', data.agencyName, data.vehiclePairs, data.efficientCarPercentage);
-
-              renderFleetComposition(processFleetComposition(data));
-          });
-
-          // GET
-
-          $.ajax({
-            url: "/getVehicleEmissions/" + agency,
-            context: document.body
-          }).done(function(data) {
             renderBarChart('emissionsBarChart',agency,data);
             renderSpiderChart('spiderChart',agency,data);
+            renderFleetComposition(processFleetComposition(data));
 
             var ghgStats = data.maxGHGandPercentDifference;
             $("#spiderSummary").html("Although " + ghgStats[0] + " vehicles account for <strong>" + ghgStats[1] + "%</strong> of the GHG emissions for " + data.agencyName + ", " + ghgStats[0] + " vehicles only make up <strong>" + ghgStats[2] + "%</strong> of the fleet.");
