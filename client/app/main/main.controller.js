@@ -93,7 +93,8 @@ angular.module('ghgVisualizerApp')
               electricData.push(r.electric);
           });
 
-          return [{
+          return [
+            [{
               name: 'Gas',
               data: gasData
           },{
@@ -105,14 +106,14 @@ angular.module('ghgVisualizerApp')
           },{
               name: 'Electric',
               data: electricData
-          }];
-
+          }], gasData[0]-gasData[3]];
       }
 
-      function renderFleetComposition(series, agency){
+      function renderFleetComposition(seriesWithMeta, agency){
           $('#executiveOrderStats').show();
 
-          $("#executiveOrderSummary").html("To reach a <strong>30%</strong> reduction in GHG emissions by 2025, " + agency + " needs to replace <strong>" + "</strong> Gasoline vehicles with <strong>" + "</strong> Electric vehicles.");
+        $("#executiveOrderSummary").html("To reach a <strong>30%</strong> reduction in GHG emissions by 2025, "
+            + agency + " could replace <strong>" + seriesWithMeta[1] + "</strong> Gasoline vehicles with Electric vehicles.");
 
           $('#fleet-composition-chart').highcharts({
               chart: {
@@ -120,9 +121,6 @@ angular.module('ghgVisualizerApp')
               },
               title: {
                   text: ""
-              },
-              subtitle: {
-                  text: 'Change Needed to Meet Emissions Reduction Executive Order'
               },
               credits: {
                   enabled: false
@@ -153,7 +151,7 @@ angular.module('ghgVisualizerApp')
                       stacking: 'percent'
                   }
               },
-              series: series
+              series: seriesWithMeta[0]
           });
       }
 
