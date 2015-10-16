@@ -31,6 +31,9 @@ angular.module('ghgVisualizerApp')
             renderPieChart('vehiclePieChart', data.agencyName, data.vehiclePairs, data.efficientCarPercentage);
             renderBarChart('emissionsBarChart',agency,data);
             renderSpiderChart('spiderChart',agency,data);
+
+            var ghgStats = data.maxGHGandPercentDifference;
+            $("#spiderSummary").html("Although " + ghgStats[0] + " vehicles account for <strong>" + ghgStats[1] + "%</strong> of the GHG emissions for " + data.agencyName + ", " + ghgStats[0] + " vehicles only make up <strong>" + ghgStats[2] + "%</strong> of the fleet.");
           });
 
           $('#initialGraphs').show();
@@ -74,8 +77,6 @@ angular.module('ghgVisualizerApp')
       }
 
       function renderBarChart(id, agency, data){
-        $scope.spiderSummary = "Test";
-
         $('#'+id).highcharts({
           chart: {
             type: 'column'
