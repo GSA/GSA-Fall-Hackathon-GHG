@@ -52,10 +52,11 @@ angular.module('ghgVisualizerApp')
          */
       function processFleetComposition(raw){
 
-          var vehicles = raw.vehiclePairs.map(function(pair){
+          var vehicles = raw.vehiclePairs.map(function(pair, index){
               return {
                   type: pair[0].toLowerCase(),
-                  count: pair[1]
+                  count: pair[1],
+                  emission: raw.vehicleEmissions[index]
               };
           });
 
@@ -72,9 +73,13 @@ angular.module('ghgVisualizerApp')
           });
 
           if ( electric == null )
-            electric = { type: 'electric', count: 0 };
+            electric = { type: 'electric', count: 0, emission: 0 };
 
-          var reductions = calculateReduction();
+          var reductions = calculatePercentage(gas.count, diesel.count, e85.count, electric.count,
+          gas.emission, diesel.emission, e85.emission, electric.emission);
+
+
+          console.log(reductions);
 
           var gasData = [gas.count];
           var e85Data = [e85.count];
@@ -83,7 +88,7 @@ angular.module('ghgVisualizerApp')
 
           reductions.forEach(function(r){
               gasData.push(r.gas);
-              e85Data.push(r.e85);
+              e85Data.push(r.hybrid);
               dieselData.push(r.diesel);
               electricData.push(r.electric);
           });
@@ -102,19 +107,6 @@ angular.module('ghgVisualizerApp')
               data: electricData
           }];
 
-      }
-
-      function calculateReduction(a,b,c,d,e,f,g,h){
-          var output = [];
-          for ( var i = 0; i < 3; i++){
-              output.push({
-                  gas: 100-i*5,
-                  e85: 100,
-                  diesel: 100,
-                  electric: 10+i*5
-              });
-          }
-          return output;
       }
 
       function renderFleetComposition(series){
@@ -320,4 +312,162 @@ angular.module('ghgVisualizerApp')
             }]
         });
       }
-  });
+
+
+        function calculatePercentage(
+            vehicle_count_gas, vehicle_count_diesel, vehicle_count_hybrid, vehicle_count_electric,
+            vehicle_emission_gas, vehicle_emission_diesel, vehicle_emission_hybrid, vehicle_emission_electric) {
+
+            //  gets units of measure for each type
+            var vehicle_unit_gas      = vehicle_emission_gas / vehicle_count_gas;
+            var vehicle_unit_diesel   = vehicle_emission_diesel / vehicle_count_diesel;
+            var vehicle_unit_hybrid   = vehicle_emission_hybrid / vehicle_count_hybrid;
+            var vehicle_unit_electric = vehicle_emission_electric / vehicle_count_electric;
+
+            //  output array
+            var output = [];
+
+            //  totals
+            var vehicle_emission_total = vehicle_emission_gas + vehicle_emission_diesel + vehicle_emission_hybrid + vehicle_emission_electric;
+            var vehicle_count_total    = vehicle_count_gas + vehicle_count_diesel + vehicle_count_hybrid + vehicle_count_electric;
+
+            console.log('---------------------------------------------------------------');
+            console.log(
+                '[gas] '
+                + 'count: ' + vehicle_count_gas + '(' + (vehicle_count_gas / vehicle_count_total) * 100 + '%), '
+                + 'emission: ' + vehicle_emission_gas + '(' + (vehicle_emission_gas / vehicle_emission_total) * 100 + '%)'
+            );
+            console.log(
+                '[diesel] '
+                + 'count: ' + vehicle_count_diesel + '(' + (vehicle_count_diesel / vehicle_count_total) * 100 + '%), '
+                + 'emission: ' + vehicle_emission_diesel + '(' + (vehicle_emission_diesel / vehicle_emission_total) * 100 + '%)'
+            );
+            console.log(
+                '[hybrid] '
+                + 'count: ' + vehicle_count_hybrid + '(' + (vehicle_count_hybrid / vehicle_count_total) * 100 + '%), '
+                + 'emission: ' + vehicle_emission_hybrid + '(' + (vehicle_emission_hybrid / vehicle_emission_total) * 100 + '%)'
+            );
+            console.log(
+                '[electric] '
+                + 'count: ' + vehicle_count_electric + '(' + (vehicle_count_electric / vehicle_count_total) * 100 + '%), '
+                + 'emission: ' + vehicle_emission_electric + '(' + (vehicle_emission_electric / vehicle_emission_total) * 100 + '%)'
+            );
+
+            var percentageTarget_a = 4;
+            var percentageTarget_b = 15;
+            var percentageTarget_c = 30;
+
+            //  gets units of measure for each type
+            var new_vehicle_unit_gas      = vehicle_emission_gas / vehicle_count_gas;
+            var new_vehicle_unit_diesel   = vehicle_emission_diesel / vehicle_count_diesel;
+            var new_vehicle_unit_hybrid   = vehicle_emission_hybrid / vehicle_count_hybrid;
+            var new_vehicle_unit_electric = vehicle_emission_electric / vehicle_count_electric;
+
+            var new_vehicle_emission_total = vehicle_emission_total;
+
+            var use_a = 1;
+            var use_b = 1;
+            var use_c = 1;
+
+
+
+            var new_vehicle_emission_gas      = vehicle_count_gas * vehicle_unit_gas;
+            var new_vehicle_emission_diesel   = vehicle_count_diesel * vehicle_unit_diesel;
+            var new_vehicle_emission_hybrid   = vehicle_count_hybrid * vehicle_unit_hybrid;
+            var new_vehicle_emission_electric = vehicle_count_electric * vehicle_unit_electric;
+
+            var newPercentage = 0;
+            //  decrement gas
+            while (vehicle_count_gas > 0) {
+
+                vehicle_count_gas      = vehicle_count_gas - 1;
+                vehicle_count_electric = vehicle_count_electric + 1;
+
+                new_vehicle_emission_total = new_vehicle_emission_gas + new_vehicle_emission_diesel + new_vehicle_emission_hybrid + new_vehicle_emission_electric;
+
+// console.log('vehicle_emission_total' + vehicle_emission_total);
+                //     console.log('new_vehicle_emission_total' + new_vehicle_emission_total);
+
+                newPercentage = 100 - ((new_vehicle_emission_total / vehicle_emission_total) * 100);
+
+                if (newPercentage > 4 && use_a == 1) {
+                    var data = {gas: vehicle_count_gas, diesel: vehicle_count_diesel, hybrid: vehicle_count_hybrid, electric: vehicle_count_electric}
+                    output.push(data);
+                    console.log(newPercentage);
+                    use_a = 0;
+
+                    console.log('---------------------------------------------------------------');
+                    console.log(
+                        '[newPercentage] '
+                        + newPercentage);
+                    console.log(
+                        '[gas] '
+                        + 'count: ' + vehicle_count_gas);
+                    console.log(
+                        '[diesel] '
+                        + 'count: ' + vehicle_count_diesel);
+                    console.log(
+                        '[hybrid] '
+                        + 'count: ' + vehicle_count_hybrid);
+                    console.log(
+                        '[electric] '
+                        + 'count: ' + vehicle_count_electric);
+
+                }
+
+                if (newPercentage > 15 && use_b == 1) {
+                    var data = {gas: vehicle_count_gas, diesel: vehicle_count_diesel, hybrid: vehicle_count_hybrid, electric: vehicle_count_electric}
+                    output.push(data);
+                    console.log(newPercentage);
+                    use_b = 0;
+
+                    console.log('---------------------------------------------------------------');
+                    console.log(
+                        '[newPercentage] '
+                        + newPercentage);
+                    console.log(
+                        '[gas] '
+                        + 'count: ' + vehicle_count_gas);
+                    console.log(
+                        '[diesel] '
+                        + 'count: ' + vehicle_count_diesel);
+                    console.log(
+                        '[hybrid] '
+                        + 'count: ' + vehicle_count_hybrid);
+                    console.log(
+                        '[electric] '
+                        + 'count: ' + vehicle_count_electric);
+                }
+
+                if (newPercentage > 30 && use_c == 1) {
+                    var data = {gas: vehicle_count_gas, diesel: vehicle_count_diesel, hybrid: vehicle_count_hybrid, electric: vehicle_count_electric}
+                    output.push(data);
+                    console.log(newPercentage);
+                    use_c = 0;
+
+                    console.log('---------------------------------------------------------------');
+                    console.log(
+                        '[newPercentage] '
+                        + newPercentage);
+                    console.log(
+                        '[gas] '
+                        + 'count: ' + vehicle_count_gas);
+                    console.log(
+                        '[diesel] '
+                        + 'count: ' + vehicle_count_diesel);
+                    console.log(
+                        '[hybrid] '
+                        + 'count: ' + vehicle_count_hybrid);
+                    console.log(
+                        '[electric] '
+                        + 'count: ' + vehicle_count_electric);
+                    break;
+                }
+            }
+
+            console.log(output);
+            return output;
+
+        }
+
+    });
