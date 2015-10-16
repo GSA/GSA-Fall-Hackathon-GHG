@@ -19,6 +19,11 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
+var gasMult = 8.85928732;
+var dieselMult = 7.40266869565217;
+var hybridMult = 1.335297848;
+var electricMult = 0;
+
 module.exports = function(app) {
 
   // Insert routes below
@@ -37,12 +42,18 @@ module.exports = function(app) {
 
     app.route('/getVehicleStats/:agency')
         .get(function(req, res){
-            connection.query("SELECT vehType, vehCount, agyName FROM ghg_agency WHERE agyAbbrev = '"+ req.params.agency +"' ORDER BY vehType ASC;",
+            connection.query("SELECT vehType, vehCount, agyName, GGE_E85, GGE_Gas, GGE_Diesel, GGE_Biodiesel, GGE_B20, GGE_Electricity FROM ghg_agency WHERE agyAbbrev = '"+ req.params.agency +"' ORDER BY GGE_Gas DESC;",
                 function(err, rows, fields) {
                     var vehiclePairs = [];
                     var agencyName = rows[0]["agyName"];
                     var energyEfficientVehicles = 0;
                     var totalVehicles = 0;
+                    var vehicleTypes = [];
+                    var vehicleEmissions = [];
+                    var totalGHG = 0;
+                    var polarCars = [];
+                    var polarGHG = [];
+                    var max;
 
                     for (var i = 0; i < rows.length; i++){
                         var type = rows[i]["vehType"];
@@ -54,10 +65,37 @@ module.exports = function(app) {
                         if (type == 'E85' || type == 'Electric'){
                             energyEfficientVehicles += count;
                         }
+
+                        var GGE_E85 = rows[i]["GGE_E85"] * hybridMult;
+                        var GGE_Gas = rows[i]["GGE_Gas"] * gasMult;
+                        var GGE_Diesel = rows[i]["GGE_Diesel"] * dieselMult;
+                        var GGE_Biodiesel = rows[i]["GGE_Biodiesel"] * dieselMult;
+                        var GGE_B20 = rows[i]["GGE_B20"] * dieselMult;
+                        var GGE_Electricity = rows[i]["GGE_Electricity"] * electricMult;
+
+                        var ggh = GGE_E85 + GGE_Gas + GGE_Diesel + GGE_Biodiesel + GGE_B20 + GGE_Electricity;
+
+                        vehicleTypes.push(type);
+                        vehicleEmissions.push(Math.round(ggh));
+                        polarCars.push(count);
+
+                        totalGHG += ggh;
                     }
 
-                    console.log(totalVehicles);
-                    console.log(energyEfficientVehicles);
+                    for (var j = 0; j < polarCars.length; j++){
+                        polarCars[j] = Math.round(polarCars[j] / totalVehicles * 100);
+                    }
+
+                    var maxGHG = 0;
+                    var maxType = "";
+                    for (var k = 0; k < vehicleEmissions.length; k++){
+                        polarGHG[k] = Math.round(vehicleEmissions[k] / totalGHG * 100);
+                        if (polarGHG[k] > maxGHG){
+                            maxGHG = polarGHG[k];
+                            maxType = vehicleTypes[k];
+                        }
+                    }
+                    var maxGHGandType = [maxType, maxGHG];
 
                     var efficientCarPercentage = Math.round(energyEfficientVehicles/totalVehicles*100);
 
@@ -65,6 +103,11 @@ module.exports = function(app) {
                     response.vehiclePairs = vehiclePairs;
                     response.agencyName = agencyName;
                     response.efficientCarPercentage = efficientCarPercentage;
+                    response.vehicleTypes = vehicleTypes;
+                    response.vehicleEmissions = vehicleEmissions;
+                    response.polarCars = polarCars;
+                    response.polarGHG = polarGHG;
+                    response.maxGHGandType = maxGHGandType;
 
                     res.send(response);
                 });
