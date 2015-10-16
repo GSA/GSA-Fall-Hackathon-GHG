@@ -2,12 +2,16 @@
 
 ##Installation
 
-Run these commands at the project root
+Run these commands at the project root:
 
 ```
 bower install
 npm install
 ```
+
+Create a database with two tables, ghg_agency and ghg_stats.
+Import both .csv files in the /data folder of the same name.
+Update lines 11-14 in /server/routes.js with the database connection information. 
 
 ##Background
 
