@@ -59,51 +59,47 @@ angular.module('ghgVisualizerApp')
           var reductions = calculateReduction(gasCount, e85count, dieselCount, electricCount,
           emissionPerGas, emissionPerE85, emissionPerDiesel, emissionPerElectric);
 
+          var gasData = [gasCount];
+          var e85Data = [e85count];
+          var dieselData = [dieselCount];
+          var electricData = [electricCount];
+
+          reductions.forEach(function(r){
+              gasData.push(r.gas);
+              e85Data.push(r.e85);
+              dieselData.push(r.diesel);
+              electricData.push(r.electric);
+          });
+
+          var series = [{
+              name: 'Gas',
+              data: gasData
+          },{
+              name: 'E85',
+              data: e85Data
+          },{
+              name: 'Diesel',
+              data: dieselData
+          },{
+              name: 'Electric',
+              data: electricData
+          }];
       }
 
       function calculateReduction(a,b,c,d,e,f,g,h){
-          return [{
-
-          }, {
-
-          },{
-
-          }];
+          var output = [];
+          for ( var i = 0; i < 3; i++){
+              output.push({
+                  gas: 100-i*5,
+                  e85: 100,
+                  diesel: 100,
+                  electric: 10+i*5
+              });
+          }
+          return output;
       }
 
-      function renderFleetComposition(data){
-
-
-          //var i;
-          //var e85series = [];
-          //for ( i = 0; i < 4; i++)
-          //  e85series.push(rawData.VEHCNT_E85);
-          //
-          //var e85gasSeries = [];
-          //for (  i = 0; i < 4; i++)
-          //    e85gasSeries.push(rawData.VEHCNT_GASE85);
-          //
-          //var otherSeries = [];
-          //for ( i = 0; i < 4; i++)
-          //    otherSeries.push(rawData.VEHCNT_OTHER);
-          //
-          //var gasSeries = [];
-          //for (  i = 0; i < 4; i++)
-          //    gasSeries.push(rawData.VEHCNT_TOTAL);
-
-          var data = [{
-              name: 'E85',
-              data: [1,2,4,5]
-          }, {
-              name: 'E85 Gas',
-              data: [1,2,4,5]
-          }, {
-              name: 'Other',
-              data: [1,2,4,5]
-          }, {
-              name: 'Gas',
-              data: [1,2,4,5]
-          }];
+      function renderFleetComposition(series){
 
           $('#fleet-composition-chart').highcharts({
               chart: {
@@ -144,8 +140,7 @@ angular.module('ghgVisualizerApp')
                       stacking: 'percent'
                   }
               },
-
-              series: data
+              series: series
           });
       }
 
