@@ -87,15 +87,21 @@ module.exports = function(app) {
                     }
 
                     var maxGHG = 0;
+                    var minPercentOfFleet = 0;
+                    var difference = 0;
                     var maxType = "";
                     for (var k = 0; k < vehicleEmissions.length; k++){
                         polarGHG[k] = Math.round(vehicleEmissions[k] / totalGHG * 100);
-                        if (polarGHG[k] > maxGHG){
+
+                        if (polarGHG[k] - polarCars[k] > difference){
+                            difference = polarGHG[k] - polarCars[k];
                             maxGHG = polarGHG[k];
                             maxType = vehicleTypes[k];
+                            minPercentOfFleet = polarCars[k];
                         }
                     }
-                    var maxGHGandType = [maxType, maxGHG];
+
+                    var maxGHGandPercentDifference = [maxType, maxGHG, minPercentOfFleet];
 
                     var efficientCarPercentage = Math.round(energyEfficientVehicles/totalVehicles*100);
 
@@ -107,7 +113,7 @@ module.exports = function(app) {
                     response.vehicleEmissions = vehicleEmissions;
                     response.polarCars = polarCars;
                     response.polarGHG = polarGHG;
-                    response.maxGHGandType = maxGHGandType;
+                    response.maxGHGandPercentDifference = maxGHGandPercentDifference;
 
                     res.send(response);
                 });
