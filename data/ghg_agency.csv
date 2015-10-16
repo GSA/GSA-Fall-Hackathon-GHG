@@ -1,0 +1,153 @@
+dataYear,agyParentName,agyType,agyAbbrev,agyName,vehType,vehCount,GGE_E85,GGE_Gas,GGE_Diesel,GGE_Biodiesel,GGE_B20,GGE_Electricity
+2014,Department of Defense,Military,ARMY,Department of Army,Diesel,13662,0,0,5,7418512,152096,0
+2014,Department of Defense,Military,ARMY,Department of Army,E85,23927,1898899,11313239.48,0,0,0,0
+2014,Department of Defense,Military,ARMY,Department of Army,Electric,513,0,0,0,0,0,18067
+2014,Department of Defense,Military,ARMY,Department of Army,Gas,25197,0,11991215.83,0,0,0,0
+2014,Department of Defense,Military,DA,Defense Agencies,E85,2492,91301,810881.7386,0,0,0,0
+2014,Department of Defense,Military,DA,Defense Agencies,Diesel,1193,0,0,0,791716,10231,0
+2014,Department of Defense,Military,DA,Defense Agencies,Electric,114,0,0,0,0,0,0
+2014,Department of Defense,Military,DA,Defense Agencies,Gas,2617,0,748974.2614,0,0,0,0
+2014,Department of Defense,Military,DAF,Department of Air Force,Diesel,16048,0,0,0,5261635,1222293,0
+2014,Department of Defense,Military,DAF,Department of Air Force,E85,12170,1404805,3331005.54,0,0,0,0
+2014,Department of Defense,Military,DAF,Department of Air Force,Electric,28,0,0,0,0,0,0
+2014,Department of Defense,Military,DAF,Department of Air Force,Gas,19430,0,8134177.46,0,0,0,0
+2014,Department of Defense,Military,NAVY,Department of Navy,E85,13848,825144,4372383.673,0,0,0,0
+2014,Department of Defense,Military,NAVY,Department of Navy,Electric,1409,0,0,0,0,0,18474
+2014,Department of Defense,Military,NAVY,Department of Navy,Diesel,5666,0,0,0,2763921,263804,0
+2014,Department of Defense,Military,NAVY,Department of Navy,Gas,17794,0,6181815.894,0,0,0,0
+2014,Department of Defense,Military,USMC,United States Marine Corps,Diesel,2462,0,0,0,1503559,904261,0
+2014,Department of Defense,Military,USMC,United States Marine Corps,Electric,897,0,0,0,0,0,38901
+2014,Department of Defense,Military,USMC,United States Marine Corps,E85,4557,1080481,1752878.348,0,0,0,0
+2014,Department of Defense,Military,USMC,United States Marine Corps,Gas,4728,0,2388184.235,0,0,0,0
+2014,United States Federal Government,Civilian,ABMC,American Battle Monuments Commission,Gas,20,0,1753,0,0,0,0
+2014,United States Federal Government,Civilian,ABMC,American Battle Monuments Commission,Diesel,23,0,0,0,2313,0,0
+2014,United States Federal Government,Civilian,BBG,Broadcasting Board of Governors,Diesel,74,0,0,0,37983,0,0
+2014,United States Federal Government,Civilian,BBG,Broadcasting Board of Governors,E85,5,68,729.6666667,0,0,0,0
+2014,United States Federal Government,Civilian,BBG,Broadcasting Board of Governors,Gas,78,0,37276.33333,0,0,0,0
+2014,United States Federal Government,Civilian,CPSC,Consumer Product Safety Commission,Gas,56,0,13889.95506,0,0,0,0
+2014,United States Federal Government,Civilian,CPSC,Consumer Product Safety Commission,Diesel,1,0,0,0,245,0,0
+2014,United States Federal Government,Civilian,CPSC,Consumer Product Safety Commission,E85,34,1044,6996.044944,0,0,0,0
+2014,United States Federal Government,Civilian,CSOSA,Court Services and Offender Supervision Agency,E85,13,1929,0,0,0,0,0
+2014,United States Federal Government,Civilian,CSOSA,Court Services and Offender Supervision Agency,Gas,63,0,9051.276316,0,0,0,0
+2014,United States Federal Government,Civilian,DHS,Department of Homeland Security,Diesel,4571,0,0,0,3303892,19,0
+2014,United States Federal Government,Civilian,DHS,Department of Homeland Security,E85,19189,604056,12542901.71,0,0,0,0
+2014,United States Federal Government,Civilian,DHS,Department of Homeland Security,Electric,34,0,0,0,0,0,663
+2014,United States Federal Government,Civilian,DHS,Department of Homeland Security,Gas,29205,0,19351991.29,0,0,0,0
+2014,United States Federal Government,Civilian,DOA,Department of Agriculture,Diesel,3454,0,0,0,3009630,60,0
+2014,United States Federal Government,Civilian,DOA,Department of Agriculture,Electric,3,0,0,0,0,0,92
+2014,United States Federal Government,Civilian,DOA,Department of Agriculture,E85,13459,320316,6411944.46,0,0,0,0
+2014,United States Federal Government,Civilian,DOA,Department of Agriculture,Gas,23206,0,12471859.68,0,0,0,0
+2014,United States Federal Government,Civilian,DOC,Department of Commerce,Diesel,160,0,0,0,74496,0,0
+2014,United States Federal Government,Civilian,DOC,Department of Commerce,E85,874,68060,333137.3324,0,0,0,0
+2014,United States Federal Government,Civilian,DOC,Department of Commerce,Gas,952,0,423969.4607,0,0,0,0
+2014,United States Federal Government,Civilian,DOE,Department of Energy,Diesel,2808,0,0,7598,2947428,712343,0
+2014,United States Federal Government,Civilian,DOE,Department of Energy,Electric,88,0,0,0,0,0,638
+2014,United States Federal Government,Civilian,DOE,Department of Energy,E85,6895,1593408,1627846.164,0,0,0,0
+2014,United States Federal Government,Civilian,DOE,Department of Energy,Gas,4147,0,1943560.34,0,0,0,0
+2014,United States Federal Government,Civilian,DOED,Department of Education,E85,51,3796,22817.77419,0,0,0,0
+2014,United States Federal Government,Civilian,DOED,Department of Education,Gas,42,0,21917.22581,0,0,0,0
+2014,United States Federal Government,Civilian,DOI,Department of the Interior,E85,8687,307540,4174542.816,0,0,0,0
+2014,United States Federal Government,Civilian,DOI,Department of the Interior,Electric,151,0,0,0,0,0,9469
+2014,United States Federal Government,Civilian,DOI,Department of the Interior,Gas,17745,0,8529586.046,0,0,0,0
+2014,United States Federal Government,Civilian,DOI,Department of the Interior,Diesel,6737,0,0,4688,3995582,305438,0
+2014,United States Federal Government,Civilian,DOJ,Department of Justice,Diesel,2409,0,0,0,1140232,20533,0
+2014,United States Federal Government,Civilian,DOJ,Department of Justice,Gas,28098,0,14495210.95,0,0,0,0
+2014,United States Federal Government,Civilian,DOJ,Department of Justice,E85,11736,1845643,4212288.462,0,0,0,0
+2014,United States Federal Government,Civilian,DOJ,Department of Justice,Electric,102,0,0,0,0,0,841
+2014,United States Federal Government,Civilian,DOL,Department of Labor,Electric,96,0,0,0,0,0,9209
+2014,United States Federal Government,Civilian,DOL,Department of Labor,Diesel,400,0,0,4656,458143,309,0
+2014,United States Federal Government,Civilian,DOL,Department of Labor,E85,2097,124393,1311796.02,0,0,0,0
+2014,United States Federal Government,Civilian,DOL,Department of Labor,Gas,1401,0,959513.9803,0,0,0,0
+2014,United States Federal Government,Civilian,EEOC,Equal Employment Opportunity Commission,E85,41,159,10437.22222,0,0,0,0
+2014,United States Federal Government,Civilian,EEOC,Equal Employment Opportunity Commission,Gas,40,0,10337.77778,0,0,0,0
+2014,United States Federal Government,Civilian,EPA,Environmental Protection Agency,Diesel,99,0,0,0,39933,4189,0
+2014,United States Federal Government,Civilian,EPA,Environmental Protection Agency,E85,454,44859,187364.5154,0,0,0,0
+2014,United States Federal Government,Civilian,EPA,Environmental Protection Agency,Gas,453,0,219569.5259,0,0,0,0
+2014,United States Federal Government,Civilian,EPA,Environmental Protection Agency,Electric,1,0,0,0,0,0,12
+2014,United States Federal Government,Civilian,FCC,Federal Communications Commission,Gas,19,0,3891.361702,0,0,0,0
+2014,United States Federal Government,Civilian,FCC,Federal Communications Commission,E85,75,16385,0,0,0,0,0
+2014,United States Federal Government,Civilian,FHFA,Federal Housing Finance Agency,Gas,2,0,710,0,0,0,0
+2014,United States Federal Government,Civilian,FHFA,Federal Housing Finance Agency,E85,5,273,1502,0,0,0,0
+2014,United States Federal Government,Civilian,FMC,Federal Maritime Commission,E85,9,874,0,0,0,0,0
+2014,United States Federal Government,Civilian,FMC,Federal Maritime Commission,Gas,0,0,0,0,0,0,0
+2014,United States Federal Government,Civilian,GPO,Government Printing Office,E85,1,0,238.7027027,0,0,0,0
+2014,United States Federal Government,Civilian,GPO,Government Printing Office,Gas,36,0,8593.297297,0,0,0,0
+2014,United States Federal Government,Civilian,GPO,Government Printing Office,Diesel,5,0,0,0,4435,0,0
+2014,United States Federal Government,Civilian,GSA,General Services Administration,Diesel,11,0,0,0,3284,0,0
+2014,United States Federal Government,Civilian,GSA,General Services Administration,Gas,582,0,150818.5984,0,0,0,0
+2014,United States Federal Government,Civilian,GSA,General Services Administration,E85,409,4516,103026.4016,0,0,0,0
+2014,United States Federal Government,Civilian,GSA,General Services Administration,Electric,2,0,0,0,0,0,0
+2014,United States Federal Government,Civilian,HHS,Department of Health and Human Services,Diesel,430,0,0,0,242998,21562,0
+2014,United States Federal Government,Civilian,HHS,Department of Health and Human Services,E85,2217,100951,703704.4622,0,0,0,0
+2014,United States Federal Government,Civilian,HHS,Department of Health and Human Services,Gas,2018,0,749392.5378,0,0,0,0
+2014,United States Federal Government,Civilian,HUD,Department of Housing and Urban Development,E85,196,535,78091.94737,0,0,0,0
+2014,United States Federal Government,Civilian,HUD,Department of Housing and Urban Development,Gas,169,0,71691.05263,0,0,0,0
+2014,United States Federal Government,Civilian,ITC,US International Trade Commission,Gas,2,0,469,0,0,0,0
+2014,United States Federal Government,Civilian,LOC,Library of Congress,E85,4,0,2514,0,0,0,0
+2014,United States Federal Government,Civilian,LOC,Library of Congress,Gas,4,0,2514,0,0,0,0
+2014,United States Federal Government,Civilian,LOC,Library of Congress,Diesel,5,0,0,0,3880,0,0
+2014,United States Federal Government,Civilian,NARA,National Archives & Records Administration,Electric,1,0,0,0,0,0,6
+2014,United States Federal Government,Civilian,NARA,National Archives & Records Administration,Diesel,9,0,0,0,6801,0,0
+2014,United States Federal Government,Civilian,NARA,National Archives & Records Administration,E85,42,3096,11574.6,0,0,0,0
+2014,United States Federal Government,Civilian,NARA,National Archives & Records Administration,Gas,8,0,2794.4,0,0,0,0
+2014,United States Federal Government,Civilian,NASA,National Aeronautics and Space Administration,Electric,347,0,0,0,0,0,8652
+2014,United States Federal Government,Civilian,NASA,National Aeronautics and Space Administration,Gas,863,0,269553.0466,0,0,0,0
+2014,United States Federal Government,Civilian,NASA,National Aeronautics and Space Administration,Diesel,508,0,0,0,161428,84971,0
+2014,United States Federal Government,Civilian,NASA,National Aeronautics and Space Administration,E85,1601,318021,199873.1747,0,0,0,0
+2014,United States Federal Government,Civilian,NATL GALLERY,National Gallery of Art,Diesel,3,0,0,0,1283,0,0
+2014,United States Federal Government,Civilian,NATL GALLERY,National Gallery of Art,Gas,8,0,2986,0,0,0,0
+2014,United States Federal Government,Civilian,NLRB,National Labor Relations Board,E85,8,66,2095.882353,0,0,0,0
+2014,United States Federal Government,Civilian,NLRB,National Labor Relations Board,Gas,26,0,7026.117647,0,0,0,0
+2014,United States Federal Government,Civilian,NRC,Nuclear Regulatory Commission,Diesel,3,0,0,0,1628,0,0
+2014,United States Federal Government,Civilian,NRC,Nuclear Regulatory Commission,E85,10,103,3973.521739,0,0,0,0
+2014,United States Federal Government,Civilian,NRC,Nuclear Regulatory Commission,Gas,13,0,5299.478261,0,0,0,0
+2014,United States Federal Government,Civilian,NSF,National Science Foundation,Diesel,213,0,0,0,146922,0,0
+2014,United States Federal Government,Civilian,NSF,National Science Foundation,E85,44,5980,18364.17589,0,0,0,0
+2014,United States Federal Government,Civilian,NSF,National Science Foundation,Gas,307,0,161499.2527,0,0,0,0
+2014,United States Federal Government,Civilian,NTSB,National Transportation Safety Board,Gas,1,0,346.8,0,0,0,0
+2014,United States Federal Government,Civilian,NTSB,National Transportation Safety Board,E85,4,0,1387.2,0,0,0,0
+2014,United States Federal Government,Civilian,OPM,Office of Personnel Management,E85,396,5629,155098.7273,0,0,0,0
+2014,United States Federal Government,Civilian,OPM,Office of Personnel Management,Gas,1056,0,428607.2727,0,0,0,0
+2014,United States Federal Government,Civilian,PEACE CORPS,Peace Corps,Gas,170,0,89420.47368,0,0,0,0
+2014,United States Federal Government,Civilian,PEACE CORPS,Peace Corps,Diesel,470,0,0,0,356784,0,0
+2014,United States Federal Government,Civilian,PEACE CORPS,Peace Corps,E85,7,75,2009.526316,0,0,0,0
+2014,United States Federal Government,Civilian,PSA,Pretrial Services Agency for the Dist of Columbia,Gas,2,0,65,0,0,0,0
+2014,United States Federal Government,Civilian,SBA,Small Business Administration,Diesel,1,0,0,0,451,0,0
+2014,United States Federal Government,Civilian,SBA,Small Business Administration,E85,94,887,36033.16774,0,0,0,0
+2014,United States Federal Government,Civilian,SBA,Small Business Administration,Gas,61,0,23958.83226,0,0,0,0
+2014,United States Federal Government,Civilian,SI,Smithsonian Institution,Diesel,97,0,0,0,22582,1682,0
+2014,United States Federal Government,Civilian,SI,Smithsonian Institution,E85,103,15252,8011.694686,0,0,0,0
+2014,United States Federal Government,Civilian,SI,Smithsonian Institution,Electric,28,0,0,0,0,0,2
+2014,United States Federal Government,Civilian,SI,Smithsonian Institution,Gas,231,0,44892.99762,0,0,0,0
+2014,United States Federal Government,Civilian,SSA,Social Security Administration,Diesel,27,0,0,0,19415,14222,0
+2014,United States Federal Government,Civilian,SSA,Social Security Administration,E85,340,43532,146174.5268,0,0,0,0
+2014,United States Federal Government,Civilian,SSA,Social Security Administration,Electric,2,0,0,0,0,0,16
+2014,United States Federal Government,Civilian,SSA,Social Security Administration,Gas,89,0,49658.47319,0,0,0,0
+2014,United States Federal Government,Civilian,STATE,Department of State,Electric,20,0,0,0,0,0,31261
+2014,United States Federal Government,Civilian,STATE,Department of State,Diesel,4192,0,0,0,1879264,0,0
+2014,United States Federal Government,Civilian,STATE,Department of State,E85,1140,11274,455261.4223,0,0,0,0
+2014,United States Federal Government,Civilian,STATE,Department of State,Gas,8243,0,3582693.578,0,0,0,0
+2014,United States Federal Government,Civilian,TRANS,Department of Transportation,Gas,2933,0,1393663.889,0,0,0,0
+2014,United States Federal Government,Civilian,TRANS,Department of Transportation,Diesel,292,0,0,0,260971,166,0
+2014,United States Federal Government,Civilian,TRANS,Department of Transportation,E85,2897,199774,1192293.111,0,0,0,0
+2014,United States Federal Government,Civilian,TREAS,Department of the Treasury,E85,1227,65768,455201.1254,0,0,0,0
+2014,United States Federal Government,Civilian,TREAS,Department of the Treasury,Gas,2295,0,984183.1824,0,0,0,0
+2014,United States Federal Government,Civilian,TREAS,Department of the Treasury,Diesel,12,0,0,0,5040,0,0
+2014,United States Federal Government,Civilian,TVA,Tennessee Valley Authority,Electric,4,0,0,0,0,0,184
+2014,United States Federal Government,Civilian,TVA,Tennessee Valley Authority,Gas,1238,0,1261011.912,0,0,0,0
+2014,United States Federal Government,Civilian,TVA,Tennessee Valley Authority,Diesel,115,0,0,0,332824,0,0
+2014,United States Federal Government,Civilian,TVA,Tennessee Valley Authority,E85,1240,29184,1233865.088,0,0,0,0
+2014,United States Federal Government,Civilian,USAID,US Agency for International Development,Diesel,1,0,0,0,251,0,0
+2014,United States Federal Government,Civilian,USAID,US Agency for International Development,Gas,5,0,1426,0,0,0,0
+2014,United States Federal Government,Civilian,VA,Department of Veterans Affairs,Diesel,1818,0,0,0,2123368,65392,0
+2014,United States Federal Government,Civilian,VA,Department of Veterans Affairs,E85,8493,1444461,3103457.507,0,0,0,0
+2014,United States Federal Government,Civilian,VA,Department of Veterans Affairs,Electric,123,0,0,0,0,0,1280
+2014,United States Federal Government,Civilian,VA,Department of Veterans Affairs,Gas,8597,0,4879499.955,0,0,0,0
+2014,United States Federal Government,Military,USACE,"Corps of Engineers, Civil Works",E85,3525,32700,2068715.538,0,0,0,0
+2014,United States Federal Government,Military,USACE,"Corps of Engineers, Civil Works",Electric,11,0,0,0,0,0,592
+2014,United States Federal Government,Military,USACE,"Corps of Engineers, Civil Works",Gas,3036,0,1707839.462,0,0,0,0
+2014,United States Federal Government,Military,USACE,"Corps of Engineers, Civil Works",Diesel,887,0,0,0,483638,1443,0
+2014,United States Federal Government,Postal Service,USPS,U.S. Postal Service,E85,41124,394461,27078751.62,0,0,0,0
+2014,United States Federal Government,Postal Service,USPS,U.S. Postal Service,Diesel,12180,0,0,0,30614297,1543950,0
+2014,United States Federal Government,Postal Service,USPS,U.S. Postal Service,Electric,49,0,0,0,0,0,2973
+2014,United States Federal Government,Postal Service,USPS,U.S. Postal Service,Gas,154216,0,103025215.4,0,0,0,0
