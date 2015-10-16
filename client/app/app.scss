@@ -19,6 +19,12 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     margin: auto;
 }
 
+.summaryParagraph {
+    font-size: 18px;
+    margin-top:28px;
+    text-align: center;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'main/main.scss';

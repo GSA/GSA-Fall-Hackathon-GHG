@@ -37,7 +37,7 @@ angular.module('ghgVisualizerApp')
             var ghgStats = data.maxGHGandPercentDifference;
             $("#spiderSummary").html("Although " + ghgStats[0] + " vehicles account for <strong>" + ghgStats[1] + "%</strong> of the GHG emissions for " + data.agencyName + ", " + ghgStats[0] + " vehicles only make up <strong>" + ghgStats[2] + "%</strong> of the fleet.");
 
-            renderFleetComposition(processFleetComposition(data));
+            renderFleetComposition(processFleetComposition(data), data.agencyName);
           });
 
           $('#initialGraphs').show();
@@ -109,9 +109,11 @@ angular.module('ghgVisualizerApp')
 
       }
 
-      function renderFleetComposition(series){
-
+      function renderFleetComposition(series, agency){
           $('#executiveOrderStats').show();
+
+          $("#executiveOrderSummary").html("To reach a <strong>30%</strong> reduction in GHG emissions by 2025, " + agency + " needs to replace <strong>" + "</strong> Gasoline vehicles with <strong>" + "</strong> Electric vehicles.");
+
           $('#fleet-composition-chart').highcharts({
               chart: {
                   type: 'column'
