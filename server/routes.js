@@ -39,6 +39,38 @@ module.exports = function(app) {
         .get(function(req, res){
             connection.query("SELECT vehType, vehCount, agyName FROM ghg_agency WHERE agyAbbrev = '"+ req.params.agency +"' ORDER BY vehType ASC;",
                 function(err, rows, fields) {
+                    var vehiclePairs = [];
+                    var agencyName = rows[0]["agyName"];
+                    var energyEfficientVehicles = 0;
+                    var totalVehicles = 0;
+
+                    for (var i = 0; i < rows.length; i++){
+                        var type = rows[i]["vehType"];
+                        var count = rows[i]["vehCount"];
+                        totalVehicles += count;
+
+                        vehiclePairs.push([type,count]);
+
+                        if (type == 'E85' || type == 'Electric'){
+                            energyEfficientVehicles += count;
+                        }
+                    }
+
+                    var efficientCarPercentage = Math.round(energyEfficientVehicles/totalVehicles);
+
+                    var response = {};
+                    response.vehiclePairs = vehiclePairs;
+                    response.agencyName = agencyName;
+                    response.efficientCarPercentage = efficientCarPercentage;
+
+                    res.send(response);
+                });
+        });
+
+    app.route('/getVehicleEmissions/:agency')
+        .get(function(req, res){
+            connection.query("SELECT vehType, vehCount, agyName FROM ghg_agency WHERE agyAbbrev = '"+ req.params.agency +"' ORDER BY vehType ASC;",
+                function(err, rows, fields) {
                     res.send(rows);
                 });
         });

@@ -3,6 +3,11 @@
 <script>
   selectedAgency = null;
 
+  var gasMult = 8.85928732;
+  var dieselMult = 7.40266869565217;
+  var hybridMult = 1.335297848;
+  var electricMult = 0;
+
   function loadAgencies() {
     $.ajax({
       url: "/getAgencies",
@@ -28,23 +33,13 @@
         url: "/getVehicleStats/" + agency,
         context: document.body
       }).done(function(data) {
-
-        var series = [{
-          name: 'Donations Received',
-          data: data.donations,
-          pointPlacement: 'on'
-        }, {
-          name: 'Donations Requested',
-          data: data.requestedDonations,
-          pointPlacement: 'on'
-        }];
-
-        renderPieChart('vehiclePieChart', data.agyName[0]);
+        console.log(data);
+        renderPieChart('vehiclePieChart', data.agencyName, data.vehiclePairs, data.efficientCarPercentage);
       });
 
       // GET
 
-      $.ajax({
+      /*$.ajax({
         url: "/getVehicleStats/" + agency,
         context: document.body
       }).done(function(data) {
@@ -58,13 +53,14 @@
           data: data.requestedDonations,
           pointPlacement: 'on'
         }];
-      });
+      });*/
 
       $('#initialGraphs').show();
     }
   }
 
-  function renderPieChart(id, agency){
+  function renderPieChart(id, agency, data, efficientCarPercentage){
+    console.log(id);
     $('#'+id).highcharts({
       chart: {
         type: 'pie',
@@ -74,8 +70,14 @@
           beta: 0
         }
       },
+      credits: {
+        enabled: false
+      },
+      exporting: {
+        enabled: false
+      },
       title: {
-        text: 'Vehicles for ' + agency
+        text: efficientCarPercentage + "% of " + agency + "'s vehicles are efficient"
       },
       tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -93,20 +95,8 @@
       },
       series: [{
         type: 'pie',
-        name: 'Browser share',
-        data: [
-          ['Firefox',   45.0],
-          ['IE',       26.8],
-          {
-            name: 'Chrome',
-            y: 12.8,
-            sliced: true,
-            selected: true
-          },
-          ['Safari',    8.5],
-          ['Opera',     6.2],
-          ['Others',   0.7]
-        ]
+        name: 'Number of Vehicles',
+        data: data
       }]
     });
   }
@@ -123,14 +113,12 @@
   </div>
 </header>
 
-<div class="container" style="display:none;">
-  <div class="row" id="initialGraphs">
+<div class="container" id="initialGraphs" style="display:none;">
+  <div class="row">
     <div class="col-md-6">
-      <h1 class="page-header"></h1>
       <div id="vehiclePieChart"></div>
     </div>
     <div class="col-md-6">
-      <h1 class="page-header"></h1>
       <div id="emissionsBarChart"></div>
     </div>
   </div>
