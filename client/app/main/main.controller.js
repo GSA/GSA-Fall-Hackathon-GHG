@@ -53,55 +53,35 @@ angular.module('ghgVisualizerApp')
       }
 
       loadAgencies();
-/*
-        vehiclePairs: [
-            [
-                "Gas",
-                25197
-            ],
-            [
-                "E85",
-                23927
-            ],
-            [
-                "Diesel",
-                13662
-            ],
-            [
-                "Electric",
-                513
-            ]
-        ],
-            agencyName: "Department of Army",
-            efficientCarPercentage: 39,
-            vehicleTypes: [
-            "Gas",
-            "E85",
-            "Diesel",
-            "Electric"
-        ],
-            vehicleEmissions: [
-            106233626,
-            102762835,
-            56042740,
-            0
-        ],
-        */
+
       function processFleetComposition(raw){
-
-      }
-
-      function renderFleetComposition(data){
-
           var gasCount = data.vehiclePairs[0][1];
           var e85count = data.vehiclePairs[1][1];
           var dieselCount = data.vehiclePairs[2][1];
           var electricCount = data.vehiclePairs[3][1];
 
           var emissionPerGas = data.vehicleEmissions[0]/gasCount;
-          var emissionPerE85 = data.vehicleEmissions[1]/gasCount;
-          var emissionPerDiesel = data.vehicleEmissions[2]/gasCount;
-          var emissionPerElectric = data.vehicleEmissions[3]/gasCount;
+          var emissionPerE85 = data.vehicleEmissions[1]/e85count;
+          var emissionPerDiesel = data.vehicleEmissions[2]/dieselCount;
+          var emissionPerElectric = data.vehicleEmissions[3]/electricCount;
+
+          var reductions = calculateReduction(gasCount, e85count, dieselCount, electricCount,
+          emissionPerGas, emissionPerE85, emissionPerDiesel, emissionPerElectric);
+
+      }
+
+      function calculateReduction(a,b,c,d,e,f,g,h){
+          return [{
+
+          }, {
+
+          },{
+
+          }];
+      }
+
+      function renderFleetComposition(data){
+
 
           //var i;
           //var e85series = [];
