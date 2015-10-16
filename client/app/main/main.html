@@ -5,7 +5,7 @@
     <h1>GHG Quick Look Tool</h1>
     <p class="lead">Which government agency are you interested in?</p>
     <div class="col-md-offset-3 col-md-6">
-      <select id="selectedAgency" placeholder="Type an agency name"></select>
+      <select id="selectedAgency" style="display:none" placeholder="Type an agency name"></select>
     </div>
   </div>
 </header>
@@ -17,6 +17,10 @@
     </div>
     <div class="col-md-6">
       <div id="emissionsBarChart"></div>
+    </div>
+    <div class="col-md-12">
+      <h3 id="spiderSummary">{{spiderSummary}}</h3>
+      <div id="spiderChart"></div>
     </div>
   </div>
 </div>
