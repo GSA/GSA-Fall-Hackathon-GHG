@@ -46,24 +46,40 @@ angular.module('ghgVisualizerApp')
 
       loadAgencies();
 
+        /**
+         * @param raw
+         * @returns high chart series
+         */
       function processFleetComposition(raw){
-          var gasCount = data.vehiclePairs[0][1];
-          var e85count = data.vehiclePairs[1][1];
-          var dieselCount = data.vehiclePairs[2][1];
-          var electricCount = data.vehiclePairs[3][1];
 
-          var emissionPerGas = data.vehicleEmissions[0]/gasCount;
-          var emissionPerE85 = data.vehicleEmissions[1]/e85count;
-          var emissionPerDiesel = data.vehicleEmissions[2]/dieselCount;
-          var emissionPerElectric = data.vehicleEmissions[3]/electricCount;
+          var vehicles = raw.vehiclePairs.map(function(pair){
+              return {
+                  type: pair[0].toLowerCase(),
+                  count: pair[1]
+              };
+          });
 
-          var reductions = calculateReduction(gasCount, e85count, dieselCount, electricCount,
-          emissionPerGas, emissionPerE85, emissionPerDiesel, emissionPerElectric);
+          var gas, e85, diesel, electric;
+          vehicles.forEach(function(v){
+              if (v.type == 'gas')
+                gas = v;
+              else if (v.type == 'e85' )
+                e85 = v;
+              else if (v.type == 'diesel')
+                diesel = v;
+              else if (v.type == 'electric')
+                electric = v;
+          });
 
-          var gasData = [gasCount];
-          var e85Data = [e85count];
-          var dieselData = [dieselCount];
-          var electricData = [electricCount];
+          if ( electric == null )
+            electric = { type: 'electric', count: 0 };
+
+          var reductions = calculateReduction();
+
+          var gasData = [gas.count];
+          var e85Data = [e85.count];
+          var dieselData = [diesel.count];
+          var electricData = [electric.count];
 
           reductions.forEach(function(r){
               gasData.push(r.gas);
@@ -72,7 +88,7 @@ angular.module('ghgVisualizerApp')
               electricData.push(r.electric);
           });
 
-          var series = [{
+          return [{
               name: 'Gas',
               data: gasData
           },{
@@ -85,6 +101,7 @@ angular.module('ghgVisualizerApp')
               name: 'Electric',
               data: electricData
           }];
+
       }
 
       function calculateReduction(a,b,c,d,e,f,g,h){
@@ -102,6 +119,7 @@ angular.module('ghgVisualizerApp')
 
       function renderFleetComposition(series){
 
+          $('#executiveOrderStats').show();
           $('#fleet-composition-chart').highcharts({
               chart: {
                   type: 'column'
