@@ -15,24 +15,107 @@
       selectedAgency = $('#selectedAgency').selectize({
         options: data,
         labelField: 'agyName',
-        valueField: 'agyName',
+        valueField: 'agyAbbrev',
         searchField: 'agyName',
         onChange: function(agency) { agencySelected(agency) }
       })[0].selectize;
-
-      //$('#cities').removeClass('hide');
     });
 
     function agencySelected(agency){
-      console.log("here");
+      // GET VEHICLE STATS
+
+      $.ajax({
+        url: "/getVehicleStats/" + agency,
+        context: document.body
+      }).done(function(data) {
+
+        var series = [{
+          name: 'Donations Received',
+          data: data.donations,
+          pointPlacement: 'on'
+        }, {
+          name: 'Donations Requested',
+          data: data.requestedDonations,
+          pointPlacement: 'on'
+        }];
+
+        renderPieChart('vehiclePieChart', data.agyName[0]);
+      });
+
+      // GET
+
+      $.ajax({
+        url: "/getVehicleStats/" + agency,
+        context: document.body
+      }).done(function(data) {
+
+        var series = [{
+          name: 'Donations Received',
+          data: data.donations,
+          pointPlacement: 'on'
+        }, {
+          name: 'Donations Requested',
+          data: data.requestedDonations,
+          pointPlacement: 'on'
+        }];
+      });
+
+      $('#initialGraphs').show();
     }
+  }
+
+  function renderPieChart(id, agency){
+    $('#'+id).highcharts({
+      chart: {
+        type: 'pie',
+        options3d: {
+          enabled: true,
+          alpha: 45,
+          beta: 0
+        }
+      },
+      title: {
+        text: 'Vehicles for ' + agency
+      },
+      tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+      },
+      plotOptions: {
+        pie: {
+          allowPointSelect: true,
+          cursor: 'pointer',
+          depth: 35,
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}'
+          }
+        }
+      },
+      series: [{
+        type: 'pie',
+        name: 'Browser share',
+        data: [
+          ['Firefox',   45.0],
+          ['IE',       26.8],
+          {
+            name: 'Chrome',
+            y: 12.8,
+            sliced: true,
+            selected: true
+          },
+          ['Safari',    8.5],
+          ['Opera',     6.2],
+          ['Others',   0.7]
+        ]
+      }]
+    });
   }
 </script>
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>Greenhouse Gas Emission Reduction Tool</h1>
-    <p class="lead">Which agency are you interested in?</p>
+    <h1>GHG Quick Look Tool</h1>
+    <p class="lead">Which government agency are you interested in?</p>
     <div class="col-md-offset-3 col-md-6">
       <select id="selectedAgency" placeholder="Type an agency name"></select>
     </div>
@@ -40,13 +123,15 @@
   </div>
 </header>
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
-      </ul>
+<div class="container" style="display:none;">
+  <div class="row" id="initialGraphs">
+    <div class="col-md-6">
+      <h1 class="page-header"></h1>
+      <div id="vehiclePieChart"></div>
+    </div>
+    <div class="col-md-6">
+      <h1 class="page-header"></h1>
+      <div id="emissionsBarChart"></div>
     </div>
   </div>
 </div>

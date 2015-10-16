@@ -29,18 +29,16 @@ module.exports = function(app) {
 
     app.route('/getAgencies')
         .get(function(req, res){
-            connection.query("SELECT DISTINCT agyName FROM ghg_agency ORDER BY agyName ASC;",
+            connection.query("SELECT DISTINCT agyName, agyAbbrev FROM ghg_agency ORDER BY agyName ASC;",
                 function(err, rows, fields) {
-                    /*var agencies = [];
-                    for (var i = 0; i < rows.length; i++){
-                        agencies.push(rows[i]["agyName"]);
-                    }
+                    res.send(rows);
+                });
+        });
 
-                    var response = new Object();
-                    response.agencies = agencies;
-
-                    console.log(response);
-                    res.send(response);*/
+    app.route('/getVehicleStats/:agency')
+        .get(function(req, res){
+            connection.query("SELECT vehType, vehCount, agyName FROM ghg_agency WHERE agyAbbrev = '"+ req.params.agency +"' ORDER BY vehType ASC;",
+                function(err, rows, fields) {
                     res.send(rows);
                 });
         });
