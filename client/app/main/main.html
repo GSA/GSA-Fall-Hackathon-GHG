@@ -1,100 +1,5 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<script>
-  selectedAgency = null;
-
-  var gasMult = 8.85928732;
-  var dieselMult = 7.40266869565217;
-  var hybridMult = 1.335297848;
-  var electricMult = 0;
-
-  function loadAgencies() {
-    $.ajax({
-      url: "/getAgencies",
-      context: document.body
-    }).done(function(data) {
-      if(selectedAgency) {
-        selectedAgency.destroy();
-      }
-
-      selectedAgency = $('#selectedAgency').selectize({
-        options: data,
-        labelField: 'agyName',
-        valueField: 'agyAbbrev',
-        searchField: 'agyName',
-        onChange: function(agency) { agencySelected(agency) }
-      })[0].selectize;
-    });
-
-    function agencySelected(agency){
-      // GET VEHICLE STATS
-
-      $.ajax({
-        url: "/getVehicleStats/" + agency,
-        context: document.body
-      }).done(function(data) {
-        console.log(data);
-        renderPieChart('vehiclePieChart', data.agencyName, data.vehiclePairs, data.efficientCarPercentage);
-      });
-
-      // GET
-
-      $.ajax({
-        url: "/getVehicleEmissions/" + agency,
-        context: document.body
-      }).done(function(data) {
-        console.log(data);
-
-        
-      });
-
-      $('#initialGraphs').show();
-    }
-  }
-
-  function renderPieChart(id, agency, data, efficientCarPercentage){
-    console.log(id);
-    $('#'+id).highcharts({
-      chart: {
-        type: 'pie',
-        options3d: {
-          enabled: true,
-          alpha: 45,
-          beta: 0
-        }
-      },
-      credits: {
-        enabled: false
-      },
-      exporting: {
-        enabled: false
-      },
-      title: {
-        text: efficientCarPercentage + "% of " + agency + "'s vehicles are efficient"
-      },
-      tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-      },
-      plotOptions: {
-        pie: {
-          allowPointSelect: true,
-          cursor: 'pointer',
-          depth: 35,
-          dataLabels: {
-            enabled: true,
-            format: '{point.name}'
-          }
-        }
-      },
-      series: [{
-        type: 'pie',
-        name: 'Number of Vehicles',
-        data: data
-      }]
-    });
-  }
-</script>
-
 <header class="hero-unit" id="banner">
   <div class="container">
     <h1>GHG Quick Look Tool</h1>
@@ -102,11 +7,10 @@
     <div class="col-md-offset-3 col-md-6">
       <select id="selectedAgency" placeholder="Type an agency name"></select>
     </div>
-    <script>loadAgencies();</script>
   </div>
 </header>
 
-<div class="container" id="initialGraphs" style="display:none;">
+<div class="container" id="initialGraphs" style="display:none; margin-top: 20px;">
   <div class="row">
     <div class="col-md-6">
       <div id="vehiclePieChart"></div>
@@ -117,10 +21,17 @@
   </div>
 </div>
 
+<div class="container" id="executiveOrderInformation" style="display:none;">
+  <div class="row">
+    <div class="col-lg-12">
+      <h3></h3>
+    </div>
+  </div>
+</div>
+
 <footer class="footer">
   <div class="container">
-      <p>Angular Fullstack v2.1.1 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+      <p><a href="https://www.boozallen.com/consulting/strategic-innovation/digital">Booz Allen's Digital Interactive</a> |
+         <a href="https://github.com/bah-interactivemedia/GSA-Fall-Hackathon-GHG/">GitHub</a></p>
   </div>
 </footer>
